@@ -1,17 +1,19 @@
 <br>
 <div>
-  <mat-form-field appearance="fill">
-    <mat-label>RustIO URL</mat-label>
-    <input matInput [ngModel]="mapa" (ngModelChange)="cambioMapa($event)">
-    <mat-hint>http://playrust.io/map/?##.##.##.##:######</mat-hint>
-  </mat-form-field>
+  <div>
+    <mat-form-field>
+      <mat-label>RustIO URL</mat-label>
+      <input matInput [ngModel]="mapa" (ngModelChange)="cambioMapa($event)">
+      <mat-hint>http://playrust.io/map/?##.##.##.##:######</mat-hint>
+    </mat-form-field>
+  </div>
   <br>
   <div *ngIf="urlMonuments && listadoTransacciones.length==0">
     <ng-container i18n>Por favor, selecciona y copia todo el texto del siguiente link y pegala en el campo de texto a
       continuacion:</ng-container>
     <a mat-button [href]="urlMonuments" target="_blank">monuments.json</a>
     <br>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-label i18n>Datos</mat-label>
       <textarea matInput [ngModel]="datosJson" (ngModelChange)="cambioDatosJson($event)"></textarea>
     </mat-form-field>
@@ -27,8 +29,10 @@
     <h2 i18n>Resultado de busqueda</h2>
     <div class="cardList" *ngIf="itemsFiltrados.length > 0 && ofertasActuales.length == 0">
       <div *ngFor="let item of itemsFiltrados" class="cardListItem" (click)="verOfertas(item)">
-        <h3>{{item.title}} [{{item.name}}]</h3>
-        <img src="assets/images/{{item.name}}.png" style="max-width: 150px;" alt="{{item.name}}">
+        <h3>{{item.title}}</h3>
+        <small>[{{item.name}}]</small>
+        <br>
+        <img src="assets/images/{{item.name}}.png" style="max-width: 150px; max-height: 150px;" alt="{{item.name}}">
       </div>
     </div>
     <div class="offers" *ngIf="ofertasActuales.length > 0">

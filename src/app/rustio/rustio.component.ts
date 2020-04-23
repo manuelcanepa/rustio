@@ -128,6 +128,8 @@ export class RustioComponent implements OnInit, AfterViewInit {
         }));
       })
     })
+
+    // console.log(this.listadoItems.map(g=>g.name))
   }
 
   cambioItem(item) {
