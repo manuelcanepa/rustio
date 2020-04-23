@@ -1,0 +1,58 @@
+<br>
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>RustIO URL</mat-label>
+    <input matInput [ngModel]="mapa" (ngModelChange)="cambioMapa($event)">
+    <mat-hint>http://playrust.io/map/?##.##.##.##:######</mat-hint>
+  </mat-form-field>
+  <br>
+  <div *ngIf="urlMonuments && listadoTransacciones.length==0">
+    <ng-container i18n>Por favor, selecciona y copia todo el texto del siguiente link y pegala en el campo de texto a
+      continuacion:</ng-container>
+    <a mat-button [href]="urlMonuments" target="_blank">monuments.json</a>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label i18n>Datos</mat-label>
+      <textarea matInput [ngModel]="datosJson" (ngModelChange)="cambioDatosJson($event)"></textarea>
+    </mat-form-field>
+  </div>
+  <div *ngIf="listadoTransacciones.length > 0">
+    <ng-container i18n>Se obtuvieron {{cantidadTransacciones}} puestos de venta con {{ofertas}} ofertas</ng-container>
+    <br>
+    <mat-form-field>
+      <mat-label i18n>Ingrese el objeto buscado</mat-label>
+      <input matInput [ngModel]="itemBuscado" (ngModelChange)="cambioItem($event)">
+    </mat-form-field>
+
+    <h2 i18n>Resultado de busqueda</h2>
+    <div class="cardList" *ngIf="itemsFiltrados.length > 0 && ofertasActuales.length == 0">
+      <div *ngFor="let item of itemsFiltrados" class="cardListItem" (click)="verOfertas(item)">
+        <h3>{{item.title}} [{{item.name}}]</h3>
+        <img src="assets/images/{{item.name}}.png" style="max-width: 150px;" alt="{{item.name}}">
+      </div>
+    </div>
+    <div class="offers" *ngIf="ofertasActuales.length > 0">
+      <a mat-button href="javascript:return false;" (click)="verOfertas(null)" i18n>Volver</a>
+      <br>
+
+      <mat-tab-group>
+        <mat-tab label="Compras actuales para {{itemActual.title}}" *ngIf="comprasActuales.length > 0">
+          <div class="offerList">
+            <div *ngFor="let item of comprasActuales" class="offerListItem compras">
+              {{ 'Por {0} de {1} ofrece {2} de {3}' | i18n : [item.qty, itemActual.title, item.price, item.itemTitle] }}
+              [ {{item.posicion.x}}, {{item.posicion.z}} ]
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Ventas actuales de {{itemActual.title}}" *ngIf="ventasActuales.length > 0">
+          <div class="offerList">
+            <div *ngFor="let item of ventasActuales" class="offerListItem ventas">
+              {{ '{0} {1} cuesta {2} de {3}' | i18n : [item.qty, itemActual.title, item.price, item.itemTitle] }}
+              [ {{item.posicion.x}}, {{item.posicion.z}} ]
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
