@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Rx";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class JsonApiService {
@@ -16,7 +17,7 @@ export class JsonApiService {
   }
 
   private getBaseUrl() {
-    return location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+    return location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + environment.prefix
   }
 
   private extractData(res: Response) {
