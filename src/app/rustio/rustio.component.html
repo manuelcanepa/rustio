@@ -20,6 +20,7 @@
   </div>
   <div *ngIf="listadoTransacciones.length > 0">
     <ng-container i18n>Se obtuvieron {{cantidadTransacciones}} puestos de venta con {{ofertas}} ofertas</ng-container>
+    <button (click)="cambioDatosJson([])">Recargar monuments.json</button>
     <br>
     <mat-form-field>
       <mat-label i18n>Ingrese el objeto buscado</mat-label>
