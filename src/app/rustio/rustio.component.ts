@@ -81,6 +81,7 @@ export class RustioComponent implements OnInit, AfterViewInit {
     this.listadoTransacciones = this.service.obtenerTransacciones(datosEval);
     this.cantidadTransacciones = this.listadoTransacciones.length;
     this.ofertas = 0;
+    this.listadoItems = new Array<Good>();
     this.listadoTransacciones.forEach((item) => {
       this.ofertas += item['goods'].length;
 
