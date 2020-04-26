@@ -36,19 +36,7 @@ export class RustioService {
   }
 
   obtenerTransacciones(json) {
-    let maquinas = [
-      'NPCVendingMachine',
-      'Shopkeeper_VM',
-      'shopkeeper_vm_invis',
-      'vendingmachine.deployed'
-    ];
-    return json.filter(item => {
-      for (var i in maquinas) {
-        if ((item['name'].indexOf(maquinas[i]) >= 0))
-          return true;
-      }
-      return false
-    })
+    return json.filter(item => item['goods'] !== undefined);
     // var ofertas = [];
     // var nombres = [];
     // for (var i in json) {
